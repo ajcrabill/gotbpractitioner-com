@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GOTB Certified Practitioner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1A3A5C;
+      --navy-lt: #2E618B;
+      --navy-dk: #0F2538;
+      --ice: #EBF2F8;
+      --white: #FFFFFF;
+      --body-text: #333333;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: var(--body-text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    .nav-logo {
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: 96px 2rem 80px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 720px;
+      margin: 0 auto 1.25rem;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      opacity: 0.9;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.25rem;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn-ice {
+      background: var(--ice);
+      color: var(--navy);
+    }
+
+    .btn-navy {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    /* ── WHAT IT IS ── */
+    .what-it-is {
+      background: var(--ice);
+      padding: 80px 2rem;
+    }
+
+    .section-heading {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--navy-dk);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 680px) {
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .two-col p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--body-text);
+    }
+
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--body-text);
+    }
+
+    .check-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .check-icon svg {
+      width: 12px;
+      height: 12px;
+      fill: none;
+      stroke: var(--white);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── WHAT YOU DO ── */
+    .what-you-do {
+      background: var(--white);
+      padding: 80px 2rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 720px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--ice);
+      border-radius: 6px;
+      padding: 2rem 1.75rem;
+      border-top: 4px solid var(--navy-lt);
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--body-text);
+    }
+
+    /* ── DISTINCTION ── */
+    .distinction {
+      background: var(--navy-dk);
+      color: var(--white);
+      padding: 80px 2rem;
+      text-align: center;
+    }
+
+    .distinction .section-heading {
+      color: var(--white);
+      margin-bottom: 2.5rem;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 860px;
+      margin: 0 auto 2.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .three-col {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+    }
+
+    .distinction-item {
+      background: rgba(255,255,255,0.07);
+      border-radius: 6px;
+      padding: 1.75rem 1.5rem;
+    }
+
+    .distinction-item h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ice);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+
+    .distinction-item p {
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    .distinction-caption {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.75;
+      opacity: 0.85;
+    }
+
+    /* ── APPLY ── */
+    .apply {
+      background: var(--ice);
+      padding: 80px 2rem;
+      text-align: center;
+    }
+
+    .apply p {
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--body-text);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: var(--white);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 0.75rem;
+    }
+
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    footer .footer-links a {
+      color: var(--ice);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    footer .footer-links a:hover {
+      opacity: 1;
+    }
+
+    footer .copyright {
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">GOTB Practitioner</a>
+    <ul class="nav-links">
+      <li><a href="#what-it-is">What It Is</a></li>
+      <li><a href="#what-you-do">What You Do</a></li>
+      <li><a href="#apply">Apply</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Become a Certified GOTB Practitioner</h1>
+    <p>Help school boards govern in the interest of students. Deliver the Great on Their Behalf framework to districts across the country.</p>
+    <a href="https://effectiveschoolboards.com" class="btn btn-ice">Apply to Become a Practitioner</a>
+  </section>
+
+  <!-- WHAT IT IS -->
+  <section class="what-it-is" id="what-it-is">
+    <h2 class="section-heading">The GOTB Certified Practitioner Credential</h2>
+    <div class="two-col">
+      <p>GOTB Certified Practitioners are trained practitioners who deliver the Great on Their Behalf governance framework to school boards. Unlike trainers who teach content, practitioners guide boards through a structured process of self-assessment, reflection, and commitment to outcomes-focused governance.</p>
+      <ul class="check-list">
+        <li>
+          <span class="check-icon">
+            <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="2,6 5,9 10,3"/>
+            </svg>
+          </span>
+          Certified by Effective School Boards, LLC
+        </li>
+        <li>
+          <span class="check-icon">
+            <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="2,6 5,9 10,3"/>
+            </svg>
+          </span>
+          Trained in the GOTB five-practice framework
+        </li>
+        <li>
+          <span class="check-icon">
+            <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="2,6 5,9 10,3"/>
+            </svg>
+          </span>
+          Authorized to deliver the GOTB Index to school districts
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHAT YOU DO -->
+  <section class="what-you-do" id="what-you-do">
+    <h2 class="section-heading">What a GOTB Practitioner Does</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Assess</h3>
+        <p>Guide boards through the GOTB Index self-assessment process, helping members honestly evaluate their current governance practices.</p>
+      </div>
+      <div class="card">
+        <h3>Facilitate</h3>
+        <p>Lead structured governance conversations that move boards from awareness to committed behavior change.</p>
+      </div>
+      <div class="card">
+        <h3>Monitor</h3>
+        <p>Support boards in establishing monitoring systems that track student outcome progress over time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISTINCTION -->
+  <section class="distinction">
+    <h2 class="section-heading">Practitioner vs. Trainer vs. Consultant</h2>
+    <div class="three-col">
+      <div class="distinction-item">
+        <h3>Trainer</h3>
+        <p>Delivers content</p>
+      </div>
+      <div class="distinction-item">
+        <h3>Consultant</h3>
+        <p>Provides answers</p>
+      </div>
+      <div class="distinction-item">
+        <h3>Practitioner</h3>
+        <p>Creates conditions for lasting change</p>
+      </div>
+    </div>
+    <p class="distinction-caption">GOTB Practitioners don't tell boards what to do. They create the conditions under which boards discover what they need to do — and commit to doing it.</p>
+  </section>
+
+  <!-- APPLY -->
+  <section class="apply" id="apply">
+    <h2 class="section-heading">Ready to Become a Practitioner?</h2>
+    <p>GOTB Practitioner certification is offered through Effective School Boards, LLC. To express interest or learn more about the pathway:</p>
+    <a href="https://effectiveschoolboards.com" class="btn btn-navy">Learn More &amp; Apply</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>GOTB Certified Practitioner | A program of Effective School Boards, LLC</p>
+    <div class="footer-links">
+      <a href="https://effectiveschoolboards.com" target="_blank" rel="noopener">effectiveschoolboards.com</a>
+      <a href="https://greatontheirbehalf.com" target="_blank" rel="noopener">greatontheirbehalf.com</a>
+    </div>
+    <p class="copyright">&copy; 2026 Effective School Boards, LLC</p>
+  </footer>
+
+</body>
+</html>
