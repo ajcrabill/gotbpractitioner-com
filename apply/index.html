@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply — Certified GOTB Practitioner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1A3A5C;
+      --navy-lt: #2E618B;
+      --navy-dk: #0F2538;
+      --ice: #EBF2F8;
+      --white: #FFFFFF;
+      --body-text: #333333;
+      --error: #C0392B;
+      --success-bg: #EAF6ED;
+      --success-border: #2ECC71;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: var(--body-text);
+      line-height: 1.6;
+      background: var(--white);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    .nav-logo {
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 1; }
+
+    /* ── PAGE LAYOUT ── */
+    .page-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 2rem 80px;
+    }
+
+    /* ── HEADER ── */
+    .page-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .page-header h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--navy-dk);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .page-header p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--body-text);
+      max-width: 640px;
+    }
+
+    /* ── CREDENTIAL BULLETS ── */
+    .credential-list {
+      background: var(--ice);
+      border-left: 4px solid var(--navy-lt);
+      border-radius: 0 6px 6px 0;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2.5rem;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .credential-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.97rem;
+      line-height: 1.55;
+    }
+
+    .check-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .check-icon svg {
+      width: 11px;
+      height: 11px;
+      fill: none;
+      stroke: var(--white);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── FORM ── */
+    .form-card {
+      background: var(--white);
+      border: 1px solid #D6E4F0;
+      border-radius: 8px;
+      padding: 2.25rem 2rem;
+      box-shadow: 0 2px 12px rgba(26,58,92,0.06);
+    }
+
+    .form-card h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem 1.5rem;
+    }
+
+    @media (max-width: 560px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 1.5rem 1.25rem; }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .field.full-width {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--navy-dk);
+    }
+
+    label .optional {
+      font-weight: 400;
+      color: #888;
+      font-size: 0.8rem;
+      margin-left: 0.35rem;
+    }
+
+    input, select, textarea {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--body-text);
+      background: var(--white);
+      border: 1px solid #BDCFDE;
+      border-radius: 4px;
+      padding: 0.6rem 0.75rem;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      width: 100%;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--navy-lt);
+      box-shadow: 0 0 0 3px rgba(46,97,139,0.12);
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231A3A5C' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      padding-right: 2.25rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* ── SUBMIT ROW ── */
+    .submit-row {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2.25rem;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      align-self: flex-start;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background: var(--navy-lt);
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    .error-msg {
+      color: var(--error);
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: none;
+    }
+
+    .error-msg.visible { display: block; }
+
+    /* ── SPINNER ── */
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: var(--white);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+
+    .btn-submit.loading .spinner { display: block; }
+    .btn-submit.loading .btn-label { display: none; }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── SUCCESS STATE ── */
+    #form-section { display: block; }
+
+    .success-panel {
+      display: none;
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      border-radius: 8px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .success-panel.visible { display: block; }
+
+    .success-panel .success-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+
+    .success-panel .success-icon svg {
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke: var(--white);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .success-panel h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--navy-dk);
+      margin-bottom: 0.65rem;
+    }
+
+    .success-panel p {
+      font-size: 1rem;
+      color: var(--body-text);
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: var(--white);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 0.75rem;
+    }
+
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    footer .footer-links a {
+      color: var(--ice);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    footer .footer-links a:hover { opacity: 1; }
+
+    footer .copyright {
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">GOTB Practitioner</a>
+    <ul class="nav-links">
+      <li><a href="/#what-it-is">What It Is</a></li>
+      <li><a href="/#what-you-do">What You Do</a></li>
+      <li><a href="/apply/" aria-current="page">Apply</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE CONTENT -->
+  <div class="page-wrap">
+
+    <div class="page-header">
+      <h1>Become a Certified <em>Great On Their Behalf</em> Practitioner</h1>
+      <p>Certified <em>Great On Their Behalf</em> Practitioners guide school systems in building governance practices focused on student outcomes. Complete the form below and a member of our team will reach out to discuss the next steps.</p>
+    </div>
+
+    <ul class="credential-list">
+      <li>
+        <span class="check-icon">
+          <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><polyline points="2,6 5,9 10,3"/></svg>
+        </span>
+        Training in the five practices of the GOTB Index
+      </li>
+      <li>
+        <span class="check-icon">
+          <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><polyline points="2,6 5,9 10,3"/></svg>
+        </span>
+        Certification by Effective School Boards, LLC
+      </li>
+      <li>
+        <span class="check-icon">
+          <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><polyline points="2,6 5,9 10,3"/></svg>
+        </span>
+        Access to the Practitioner Network and ongoing support
+      </li>
+      <li>
+        <span class="check-icon">
+          <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><polyline points="2,6 5,9 10,3"/></svg>
+        </span>
+        Authorization to deliver GOTB Index assessments to governing teams
+      </li>
+      <li>
+        <span class="check-icon">
+          <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><polyline points="2,6 5,9 10,3"/></svg>
+        </span>
+        Commitment to student-outcomes-focused governance language
+      </li>
+    </ul>
+
+    <!-- FORM -->
+    <div id="form-section">
+      <div class="form-card">
+        <h2>Practitioner Application</h2>
+        <form id="apply-form" novalidate>
+          <div class="form-grid">
+
+            <div class="field full-width">
+              <label for="name">Full Name <span style="color:var(--error)">*</span></label>
+              <input type="text" id="name" name="name" autocomplete="name" required placeholder="Your full name" />
+            </div>
+
+            <div class="field">
+              <label for="email">Email <span style="color:var(--error)">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" required placeholder="you@example.com" />
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone <span class="optional">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="555-123-4567" />
+            </div>
+
+            <div class="field full-width">
+              <label for="organization">Organization / School System <span class="optional">(optional)</span></label>
+              <input type="text" id="organization" name="organization" placeholder="The school system(s) you currently work with" />
+            </div>
+
+            <div class="field">
+              <label for="role">Current Role <span class="optional">(optional)</span></label>
+              <input type="text" id="role" name="role" placeholder="Your title or role" />
+            </div>
+
+            <div class="field">
+              <label for="state">State <span class="optional">(optional)</span></label>
+              <select id="state" name="state">
+                <option value="">— Select state —</option>
+                <option>AL</option><option>AK</option><option>AZ</option><option>AR</option>
+                <option>CA</option><option>CO</option><option>CT</option><option>DE</option>
+                <option>FL</option><option>GA</option><option>HI</option><option>ID</option>
+                <option>IL</option><option>IN</option><option>IA</option><option>KS</option>
+                <option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+                <option>MA</option><option>MI</option><option>MN</option><option>MS</option>
+                <option>MO</option><option>MT</option><option>NE</option><option>NV</option>
+                <option>NH</option><option>NJ</option><option>NM</option><option>NY</option>
+                <option>NC</option><option>ND</option><option>OH</option><option>OK</option>
+                <option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+                <option>SD</option><option>TN</option><option>TX</option><option>UT</option>
+                <option>VT</option><option>VA</option><option>WA</option><option>WV</option>
+                <option>WI</option><option>WY</option><option>DC</option>
+              </select>
+            </div>
+
+            <div class="field full-width">
+              <label for="message">What draws you to GOTB practitioner certification? <span class="optional">(optional)</span></label>
+              <textarea id="message" name="message" placeholder="Share what motivates your interest…"></textarea>
+            </div>
+
+          </div>
+
+          <div class="submit-row">
+            <button type="submit" class="btn-submit" id="submit-btn">
+              <span class="spinner"></span>
+              <span class="btn-label">Submit Application</span>
+            </button>
+            <span class="error-msg" id="error-msg"></span>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- SUCCESS PANEL (hidden until submit) -->
+    <div class="success-panel" id="success-panel">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="4,12 9,17 20,6"/></svg>
+      </div>
+      <h2 id="success-heading">Thank you!</h2>
+      <p>We've received your application and will be in touch soon.</p>
+    </div>
+
+  </div><!-- /.page-wrap -->
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Certified GOTB Practitioner | Effective School Boards, LLC</p>
+    <div class="footer-links">
+      <a href="https://effectiveschoolboards.com" target="_blank" rel="noopener">effectiveschoolboards.com</a>
+      <a href="https://greatontheirbehalf.com" target="_blank" rel="noopener">greatontheirbehalf.com</a>
+    </div>
+    <p class="copyright">&copy; 2026 Effective School Boards, LLC</p>
+  </footer>
+
+  <script>
+    const ENDPOINT = 'https://gotb.effectiveschoolboards.com/api/funnel/inbound/practitioner-application';
+
+    const form = document.getElementById('apply-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const errorMsg = document.getElementById('error-msg');
+    const formSection = document.getElementById('form-section');
+    const successPanel = document.getElementById('success-panel');
+    const successHeading = document.getElementById('success-heading');
+
+    function setLoading(loading) {
+      submitBtn.disabled = loading;
+      submitBtn.classList.toggle('loading', loading);
+    }
+
+    function showError(msg) {
+      errorMsg.textContent = msg;
+      errorMsg.classList.add('visible');
+    }
+
+    function clearError() {
+      errorMsg.textContent = '';
+      errorMsg.classList.remove('visible');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearError();
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      if (!name) { showError('Please enter your full name.'); return; }
+      if (!email || !email.includes('@')) { showError('Please enter a valid email address.'); return; }
+
+      const payload = {
+        name,
+        email,
+        phone: document.getElementById('phone').value.trim() || null,
+        organization: document.getElementById('organization').value.trim() || null,
+        role: document.getElementById('role').value.trim() || null,
+        state: document.getElementById('state').value || null,
+        message: document.getElementById('message').value.trim() || null,
+      };
+
+      setLoading(true);
+
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) {
+          let detail = 'Something went wrong. Please try again or email us directly.';
+          try {
+            const data = await res.json();
+            if (data.detail) detail = data.detail;
+          } catch (_) {}
+          showError(detail);
+          return;
+        }
+
+        // Success
+        successHeading.textContent = `Thank you, ${name}. We'll be in touch soon.`;
+        formSection.style.display = 'none';
+        successPanel.classList.add('visible');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      } catch (err) {
+        showError('A network error occurred. Please check your connection and try again.');
+      } finally {
+        setLoading(false);
+      }
+    });
+  </script>
+
+</body>
+</html>
